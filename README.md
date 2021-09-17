@@ -1,2 +1,2 @@
-1uzduoties programavimo kodai talpinami main.cpp
+Pirmos užduoties programavimo kodai ir jų atnaujinimo istorija talpinama main.cpp
 
