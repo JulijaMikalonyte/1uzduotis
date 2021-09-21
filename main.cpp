@@ -9,6 +9,8 @@ struct studentas{//aprasom ka naudosim
   float galutinis;//skaicius per kableli
 };
 
+void print(studentas);
+
 int main(){
   std::cout <<"Iveskite studentu skaiciu"<< std::endl;
   int n;//studentu skaicius
@@ -16,7 +18,7 @@ int main(){
   studentas grupe[n];//studentas-naudojamas duomenu tipas kuri patys apsirasem, tokio tipo turesim grupe su n nariu
   float suma=0;//reikalinga apskaiciuoti vidurki
   for (int i=0; i<n; i++)//for funkcija skirta duomenu apie studentus surinkimui
-  {
+   {
     std::cout<<"Iveskite "<<i+1<<"-jo studento vardas:\n";
     std::cin>>grupe[i].Vardas;
     std::cout<<"Iveskite "<<i+1<<"-jo studento pavarde:\n";
@@ -32,9 +34,23 @@ int main(){
     std::cin>>grupe[i].egzaminas;
     grupe[i].galutinis=0.4*suma/10+0.6*grupe[i].egzaminas;
   }
-  std::cout<<std::setw(15)<<"Vardas"<<std::setw(15)<<"Pavarde"<<std::setw(20)<<"Galutinis pazymys\n"<<"-----------------------------------------------------\n";//atspausdiname antraste
-  for (auto &g:grupe)//foras skirtas duomenu isvedimui, automatiskai kintamajam priskiriama po viena elementa, kuris patalpintas masyve grupe; &-adresas (kad kiekviena kart nereiktu perrasinet kintamojo) i atitinkama elementa
-    
-    std::cout<<std::setw(15)<<g.Vardas<<std::setw(15)<<g.Pavarde<<std::setw(15)<<std::setprecision(2)<<g.galutinis<<std::endl;//isvedame ats, setw reiskia tarpus tarp zodziu, endl uzbaigia viska.
   
+  std::cout<<std::setw(15)<<"Vardas"<<std::setw(15)<<"Pavarde"<<std::setw(20)<<"Galutinis pazymys\n"<<"-----------------------------------------------------\n";//atspausdiname antraste
+
+  for (auto &g:grupe)//foras skirtas duomenu isvedimui, automatiskai kintamajam priskiriama po viena elementa, kuris patalpintas masyve grupe; &-adresas (kad kiekviena kart nereiktu perrasinet kintamojo) i atitinkama elementa
+  {
+    
+    print(g);
+  }
 };
+
+void print(studentas g){
+
+  
+
+  
+
+  std::cout<<std::setw(15)<<g.Vardas<<std::setw(15)<<g.Pavarde<<std::setw(15)<<std::setprecision(2)<<g.galutinis<<std::endl;//isvedame ats, setw reiskia tarpus tarp zodziu, endl uzbaigia viska.
+  
+
+}
