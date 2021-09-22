@@ -16,6 +16,21 @@ void print(studentas);
 
 using namespace std;
 
+int Random() //sugeneruoja random skaiciu nuo 1 iki 10
+{
+  srand(time(NULL));
+  return rand() % 10 + 1;
+}
+void autom(studentas grupe[], int i, int k) //funckija automatiskai suveda pazymius ir egzamino pazymi
+{
+  grupe[i].egzaminas = Random();
+  for (int j = 0; j < k; j++){
+    grupe[i].nd[j] = Random();
+  }
+  grupe[i].Vgalutinis=grupe[i].Vgalutinis/k;
+  
+}
+
 int main(){
   std::cout<<"Jei norite, kad pazymiai uz namu darbus butu suvesti automatiskai iveskite 1, jei norite pazymius suvesti patys iveskite 2:\n";
   int a;
@@ -38,28 +53,36 @@ int main(){
     std::cin>>grupe[i].Pavarde;
     suma=0;
 
-    std::cout<<"iveskite "<<i+1<<"-jo studento egzamino pazymi:\n";
-    std::cin>>grupe[i].egzaminas;
-
     std::cout<<"iveskite gautu pazymiu uz namu darbus kieki:\n";
     int k;
     std::cin>>k;
 
-    for (int j=0; j<k; j++)//for funkcija skirta kiekvieno studento visu pazymiu surinkimui
-    {
-      std::cout<<"Iveskite pazymi uz "<<j+1<<" namu darba:\n";
-      std::cin>>grupe[i].nd[j];//pirmos gr 1-10 pazymai, antros ir t.t.
-      suma=suma+grupe[i].nd[j];//iskart skaiciuojame is pazymiu suma, suma + atitinkamas pazimys
-      int temp;
-      
-      if(grupe[i].nd[j]>grupe[i].nd[j<k])//isrusiuojam masyva
-			{
-				temp  =grupe[i].nd[j];
-				grupe[i].nd[j]=grupe[i].nd[j<k];
-				grupe[i].nd[j<k]=temp;
+    if(a==1){
+      for (int z = 0; z < n; z++){
+        autom(grupe, i, 5);
+        suma=suma+grupe[i].nd[z];
       }
-            
-    }    
+    }
+
+    else{
+      std::cout<<"iveskite "<<i+1<<"-jo studento egzamino pazymi:\n";
+      std::cin>>grupe[i].egzaminas;
+
+      for (int j=0; j<k; j++)//pazymiai vedami ranka
+      {
+        std::cout<<"Iveskite pazymi uz "<<j+1<<" namu darba:\n";
+        std::cin>>grupe[i].nd[j];//pirmos gr 1-10 pazymai, antros ir t.t.
+        suma=suma+grupe[i].nd[j];//iskart skaiciuojame is pazymiu suma, suma + atitinkamas pazimys
+        int temp;
+      
+        if(grupe[i].nd[j]>grupe[i].nd[j<k])//isrusiuojam masyva
+			  {
+				  temp  =grupe[i].nd[j];
+				  grupe[i].nd[j]=grupe[i].nd[j<k];
+				  grupe[i].nd[j<k]=temp;
+        }     
+      }   
+    } 
 
     if (k % 2 != 0){//skaiciuojam galutini su mediana
       grupe[i].Mgalutinis=grupe[i].nd[k/2];
