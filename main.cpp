@@ -17,9 +17,14 @@ void print(studentas);
 using namespace std;
 
 int main(){
+  std::cout<<"Jei norite, kad pazymiai uz namu darbus butu suvesti automatiskai iveskite 1, jei norite pazymius suvesti patys iveskite 2:\n";
+  int a;
+  std::cin>>a;
+
   std::cout <<"Iveskite studentu skaiciu"<< std::endl;
   int n;//studentu skaicius
   std::cin>>n;
+
   studentas grupe[n];//studentas-naudojamas duomenu tipas kuri patys apsirasem, tokio tipo turesim grupe su n nariu
   float suma=0;//reikalinga apskaiciuoti vidurki
   int Mgalutinis;
@@ -36,30 +41,34 @@ int main(){
     std::cout<<"iveskite "<<i+1<<"-jo studento egzamino pazymi:\n";
     std::cin>>grupe[i].egzaminas;
 
-    for (int j=0; j<10; j++)//for funkcija skirta kiekvieno studento visu pazymiu surinkimui
+    std::cout<<"iveskite gautu pazymiu uz namu darbus kieki:\n";
+    int k;
+    std::cin>>k;
+
+    for (int j=0; j<k; j++)//for funkcija skirta kiekvieno studento visu pazymiu surinkimui
     {
       std::cout<<"Iveskite pazymi uz "<<j+1<<" namu darba:\n";
       std::cin>>grupe[i].nd[j];//pirmos gr 1-10 pazymai, antros ir t.t.
       suma=suma+grupe[i].nd[j];//iskart skaiciuojame is pazymiu suma, suma + atitinkamas pazimys
       int temp;
       
-      if(grupe[i].nd[j]>grupe[i].nd[j<10])//isrusiuojam masyva
+      if(grupe[i].nd[j]>grupe[i].nd[j<k])//isrusiuojam masyva
 			{
 				temp  =grupe[i].nd[j];
-				grupe[i].nd[j]=grupe[i].nd[j<10];
-				grupe[i].nd[j<10]=temp;
+				grupe[i].nd[j]=grupe[i].nd[j<k];
+				grupe[i].nd[j<k]=temp;
       }
             
     }    
 
-    if (10 % 2 != 0){//skaiciuojam galutini su mediana
-      grupe[i].Mgalutinis=grupe[i].nd[11/2];
+    if (k % 2 != 0){//skaiciuojam galutini su mediana
+      grupe[i].Mgalutinis=grupe[i].nd[k/2];
     }
     else{
-      grupe[i].Mgalutinis=(grupe[i].nd[(11-1)/2] + grupe[i].nd[11/2])/2;
+      grupe[i].Mgalutinis=(grupe[i].nd[(k-1)/2] + grupe[i].nd[k/2])/2;
     }
 
-    grupe[i].Vgalutinis=0.4*suma/10+0.6*grupe[i].egzaminas;//skaiciuojam galutini su vidurkiu
+    grupe[i].Vgalutinis=0.4*suma/k+0.6*grupe[i].egzaminas;//skaiciuojam galutini su vidurkiu
 
   }
   
