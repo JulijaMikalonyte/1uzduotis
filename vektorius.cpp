@@ -4,6 +4,8 @@
 #include <vector>
 #include <algorithm>
 #include <numeric>
+#include <thread>
+#include <chrono>
 
 struct studentas{
   std::string Vardas, Pavarde;
@@ -13,8 +15,8 @@ struct studentas{
   float egzaminas;
 };
 
-void print(studentas);
-double mediana(std::vector<float> &vec);
+void print(studentas);//apibreziam ka naudojam, kad f-ja is anksto zinotu
+double mediana(std::vector<float> &vec);//&- ne kopijuoja o tik naudojasi duomenimis, priskyrimas
 
 int Random() //sugeneruoja random skaiciu nuo 1 iki 10
 {
@@ -30,6 +32,11 @@ int main(){
   std::cout <<"Iveskite studentu skaiciu"<< std::endl;
   int n;
   std::cin>>n;
+
+  if(isdigit(n)!=true){
+    std::cout<<"ivedimo klaida, bandykite dar karta\n";
+    std::cin>>(a);
+  }
 
   std::vector<studentas> grupe;
   studentas tempas;
@@ -69,7 +76,7 @@ int main(){
     std::cout<<"Iveskite "<<i+1<<"-jo studento egzamino pazymi:\n";
     std::cin>>tempas.egzaminas;
     }
-    vid=std::accumulate(tempas.nd.begin(), tempas.nd.end(), 0.0)/tempas.nd.size();//
+    vid=std::accumulate(tempas.nd.begin(), tempas.nd.end(), 0.0)/tempas.nd.size();//acc-susumuoja nuo pirmo iki paskutinio vektoriaus elemento
 
     med=mediana(tempas.nd);
     tempas.medgalutinis=med;
