@@ -5,10 +5,10 @@
 #include <algorithm>
 #include <numeric>
 
-struct studentas{//aprasom ka naudosim
+struct studentas{
   std::string Vardas, Pavarde;
-  std::vector<float> nd;//skaiciavimui su mediana
-  float galutinis;//skaicius per kableli, skaiciuojama pagal vidurki
+  std::vector<float> nd;
+  float galutinis;//naudijamas vidurkiui apskaiciuot
   float medgalutinis;
   float egzaminas;
 };
@@ -16,18 +16,28 @@ struct studentas{//aprasom ka naudosim
 void print(studentas);
 double mediana(std::vector<float> &vec);
 
+int Random() //sugeneruoja random skaiciu nuo 1 iki 10
+{
+  srand(time(NULL));
+  return rand() % 10 + 1;
+}
+
 int main(){
+  std::cout<<"Jei norite, kad pazymiai uz namu darbus butu suvesti automatiskai iveskite 1, jei norite pazymius suvesti patys iveskite 2:\n";
+  int a;
+  std::cin>>a;
+
   std::cout <<"Iveskite studentu skaiciu"<< std::endl;
   int n;
   std::cin>>n;
 
-  std::vector<studentas> grupe;//skaiciavimui su mediana
-  studentas tempas;  // pakeist zodi tempas-----------------------------------------------
+  std::vector<studentas> grupe;
+  studentas tempas;
   grupe.reserve(n);
 
-  float suma=0, laik, vid, med;//reikalinga apskaiciuoti vidurki
+  float suma=0, laik, vid, med;
   
-  for (int i=0; i<n; i++)
+  for (int i=0; i<n; i++)//info surinkimas
   {
     std::cout<<"Iveskite "<<i+1<<"-jo studento varda:\n";
     std::cin>>tempas.Vardas;
@@ -35,22 +45,31 @@ int main(){
     std::cout<<"Iveskite "<<i+1<<"-jo studento pavarde:\n";
     std::cin>>tempas.Pavarde;
 
-    std::cout<<"Iveskite studento gautus pazymius uz namu darbus, suvedus visus pazymius ivekite bruksni:\n";
-
-    suma=0;
-
-    while(std::cin>>laik)
-    {
-      tempas.nd.push_back(laik);
-      suma=suma+laik;
+    if(a==1){//nd atsitiktiniai
+      tempas.egzaminas = Random();
+      int k=0;
+      while(k<5){
+        tempas.nd.push_back(Random());
+        k=k+1;
+      }
     }
-    std::cin.clear();
-    std::cin.ignore(10000, '\n');
+    else{//nd suvesti ranka
+      std::cout<<"Iveskite studento gautus pazymius uz namu darbus, suvedus visus pazymius ivekite bruksni:\n";
+
+      suma=0;
+
+      while(std::cin>>laik){
+        tempas.nd.push_back(laik);
+        suma=suma+laik;
+      }
+    
+    std::cin.clear();//ignoruoja bloga ivesti
+    std::cin.ignore(10000, '\n');//ignoruoja ivesties paskutini n-taji
 
     std::cout<<"Iveskite "<<i+1<<"-jo studento egzamino pazymi:\n";
     std::cin>>tempas.egzaminas;
-
-    vid=std::accumulate(tempas.nd.begin(), tempas.nd.end(), 0.0)/tempas.nd.size();
+    }
+    vid=std::accumulate(tempas.nd.begin(), tempas.nd.end(), 0.0)/tempas.nd.size();//
 
     med=mediana(tempas.nd);
     tempas.medgalutinis=med;
@@ -63,8 +82,7 @@ int main(){
   int pasirinkimas;
   std::cin>>pasirinkimas;
 
-
-  std::cout<<std::setw(15)<<"Vardas"<<std::setw(15)<<"Pavarde"<<std::setw(20)<<"Galutinis pazymys\n"<<"-----------------------------------------------------\n";//atspausdiname antraste
+  std::cout<<std::setw(15)<<"Vardas"<<std::setw(15)<<"Pavarde"<<std::setw(20)<<"Galutinis pazymys\n"<<"-----------------------------------------------------\n";
 
   if(pasirinkimas==1){
     for (const auto &g:grupe){
@@ -75,11 +93,10 @@ int main(){
       std::cout<<std::setw(15)<<g.Vardas<<std::setw(15)<<g.Pavarde<<std::setw(15)<<std::setprecision(2)<<g.medgalutinis<<std::endl;
     }
   }
-
 }
 
 void print(studentas g){
-    std::cout<<std::setw(15)<<g.Vardas<<std::setw(15)<<g.Pavarde<<std::setw(15)<<std::setprecision(2)<<g.galutinis<<std::endl;//isvedame ats, setw reiskia tarpus tarp zodziu, endl uzbaigia viska.
+    std::cout<<std::setw(15)<<g.Vardas<<std::setw(15)<<g.Pavarde<<std::setw(15)<<std::setprecision(2)<<g.galutinis<<std::endl;
 }
 
 double mediana(std::vector<float> &vec){
