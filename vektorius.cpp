@@ -17,6 +17,7 @@ struct studentas{
 
 void print(studentas);//apibreziam ka naudojam, kad f-ja is anksto zinotu
 double mediana(std::vector<float> &vec);//&- ne kopijuoja o tik naudojasi duomenimis, priskyrimas
+void tikrinimas(int &t);//ar gerai ivesti duomenys
 
 int Random() //sugeneruoja random skaiciu nuo 1 iki 10
 {
@@ -28,15 +29,14 @@ int main(){
   std::cout<<"Jei norite, kad pazymiai uz namu darbus butu suvesti automatiskai iveskite 1, jei norite pazymius suvesti patys iveskite 2:\n";
   int a;
   std::cin>>a;
+  tikrinimas(a);
 
   std::cout <<"Iveskite studentu skaiciu"<< std::endl;
   int n;
   std::cin>>n;
+  tikrinimas(n);
 
-  if(isdigit(n)!=true){
-    std::cout<<"ivedimo klaida, bandykite dar karta\n";
-    std::cin>>(a);
-  }
+ 
 
   std::vector<studentas> grupe;
   studentas tempas;
@@ -46,10 +46,10 @@ int main(){
   
   for (int i=0; i<n; i++)//info surinkimas
   {
-    std::cout<<"Iveskite "<<i+1<<"-jo studento varda:\n";
+    std::cout<<"Iveskite "<<i+1<<"-jo studento varda arba numeri:\n";
     std::cin>>tempas.Vardas;
 
-    std::cout<<"Iveskite "<<i+1<<"-jo studento pavarde:\n";
+    std::cout<<"Iveskite "<<i+1<<"-jo studento pavarde arba numeri:\n";
     std::cin>>tempas.Pavarde;
 
     if(a==1){//nd atsitiktiniai
@@ -67,7 +67,8 @@ int main(){
 
       while(std::cin>>laik){
         tempas.nd.push_back(laik);
-        suma=suma+laik;
+        suma=suma+laik;5
+        
       }
     
     std::cin.clear();//ignoruoja bloga ivesti
@@ -115,3 +116,18 @@ double mediana(std::vector<float> &vec){
   vecSize vid=size/2;
   return size%2==0?(vec[vid]+vec[vid-1])/2:vec[vid];
 }
+
+void tikrinimas(int &t){
+  do{
+    try{
+      if(std::cin.fail()){throw std::runtime_error("Ivedimo klaida ");}
+    }
+    catch (const std::runtime_error& e){
+      std::cout<<e.what();
+      std::cin.clear();
+      std::cin.ignore(256, '\n');
+      std::cout<<"bandykite dar karta\n";
+      std::cin>>t;
+    }
+  }while(std::cin.fail()==true);
+};
