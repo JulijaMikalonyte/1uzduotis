@@ -13,7 +13,7 @@ struct studentas{//aprasom ka naudosim
 };
 
 void print(studentas);
-
+void tikrinimas(int &t);
 using namespace std;
 
 int Random() //sugeneruoja random skaiciu nuo 1 iki 10
@@ -28,17 +28,18 @@ void autom(studentas grupe[], int i, int k) //funckija automatiskai suveda pazym
     grupe[i].nd[j] = Random();
   }
   grupe[i].Vgalutinis=grupe[i].Vgalutinis/k;
-  
 }
 
 int main(){
   std::cout<<"Jei norite, kad pazymiai uz namu darbus butu suvesti automatiskai iveskite 1, jei norite pazymius suvesti patys iveskite 2:\n";
   int a;
   std::cin>>a;
+  tikrinimas(a);
 
   std::cout <<"Iveskite studentu skaiciu"<< std::endl;
   int n;//studentu skaicius
   std::cin>>n;
+  tikrinimas(n);
 
   studentas grupe[n];//studentas-naudojamas duomenu tipas kuri patys apsirasem, tokio tipo turesim grupe su n nariu
   float suma=0;//reikalinga apskaiciuoti vidurki
@@ -47,15 +48,16 @@ int main(){
 
   for (int i=0; i<n; i++)//for funkcija skirta duomenu apie studentus surinkimui
    {
-    std::cout<<"Iveskite "<<i+1<<"-jo studento vardas:\n";
+    std::cout<<"Iveskite "<<i+1<<"-jo studento vardas arba numeris:\n";
     std::cin>>grupe[i].Vardas;
-    std::cout<<"Iveskite "<<i+1<<"-jo studento pavarde:\n";
+    std::cout<<"Iveskite "<<i+1<<"-jo studento pavarde arba numeris:\n";
     std::cin>>grupe[i].Pavarde;
     suma=0;
 
     std::cout<<"iveskite gautu pazymiu uz namu darbus kieki:\n";
     int k;
     std::cin>>k;
+    tikrinimas(k);
 
     if(a==1){
       for (int z = 0; z < n; z++){
@@ -95,10 +97,10 @@ int main(){
 
   }
   
-
   std::cout<<"Jei norite, kad studentu galutiniai pazymiai butu suskaiciuoti pagal vidurki, iveskite 1, jei pagal mediana iveskite 2:"<<std::endl;
   int pasirinkimas;
   std::cin>>pasirinkimas;
+  tikrinimas(pasirinkimas);
 
   std::cout<<std::setw(15)<<"Vardas"<<std::setw(15)<<"Pavarde"<<std::setw(20)<<"Galutinis pazymys\n"<<"-----------------------------------------------------\n";//atspausdiname antraste
 
@@ -113,10 +115,23 @@ int main(){
   }
 };
 
-
-
 void print(studentas g){
 
   std::cout<<std::setw(15)<<g.Vardas<<std::setw(15)<<g.Pavarde<<std::setw(15)<<std::setprecision(2)<<g.Vgalutinis<<std::endl;//isvedame ats, setw reiskia tarpus tarp zodziu, endl uzbaigia viska.
   
+};
+
+void tikrinimas(int &t){
+  do{
+    try{
+      if(std::cin.fail()){throw std::runtime_error("Ivedimo klaida ");}
+    }
+    catch (const std::runtime_error& e){
+      std::cout<<e.what();
+      std::cin.clear();
+      std::cin.ignore(256, '\n');
+      std::cout<<"bandykite dar karta\n";
+      std::cin>>t;
+    }
+  }while(std::cin.fail()==true);
 };
