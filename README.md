@@ -6,6 +6,6 @@ Kodai esantys abiejuose failuose turi galimybę leisti vartotojui pasirinkti ar 
 Abiejuose failuose, priklausomai nuo vartotojo pasirinkimo ar jis nori pats suvesti duomenis, ar nori, kad jie būtų parenkami atsitiktinai, surenkami duomenys. Tada apskaičiuojama mediana ir vidurkis. Priklausomai nuo vartotojo pasirinkimo atspausdinamas norimas atsakymas.
 
 # v0.2
-Pirmos užduoties antros dalies (v0.2) kodas talpinamas v02kodas.cpp faile, kuris yra vektorius.cpp failo papildymas ir release'uose.
+Pirmos užduoties antros dalies (v0.2) kodas talpinamas v02kodas.cpp faile, kuris yra vektorius.cpp failo papildymas, ir release'uose.
 
-Papildytas kodas geba nuskaityti failą, atlikti įprastus skaičiavimus jau aprašyta tvarka ir atsakymą pateikti išrušiuotą pagal abėcėlę.
+Papildytas kodas geba nuskaityti failą, atlikti įprastus skaičiavimus jau aprašyta tvarka ir atsakymą pateikti išrušiuotą.
