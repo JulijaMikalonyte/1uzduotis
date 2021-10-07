@@ -67,7 +67,7 @@ int main(){
 
       while(std::cin>>laik){
         tempas.nd.push_back(laik);
-        suma=suma+laik;5
+        suma=suma+laik;
         
       }
     
@@ -79,7 +79,7 @@ int main(){
     }
     vid=std::accumulate(tempas.nd.begin(), tempas.nd.end(), 0.0)/tempas.nd.size();//acc-susumuoja nuo pirmo iki paskutinio vektoriaus elemento
 
-    med=mediana(tempas.nd);
+    med=0.4*mediana(tempas.nd)+tempas.egzaminas;
     tempas.medgalutinis=med;
 
     tempas.galutinis=0.4*vid+0.6*tempas.egzaminas;
