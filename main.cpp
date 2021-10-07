@@ -90,7 +90,7 @@ int main(){
       grupe[i].Mgalutinis=grupe[i].nd[k/2];
     }
     else{
-      grupe[i].Mgalutinis=(grupe[i].nd[(k-1)/2] + grupe[i].nd[k/2])/2;
+      grupe[i].Mgalutinis=0.4*((grupe[i].nd[(k-1)/2] + grupe[i].nd[k/2])/2)+0.6*grupe[i].egzaminas;
     }
 
     grupe[i].Vgalutinis=0.4*suma/k+0.6*grupe[i].egzaminas;//skaiciuojam galutini su vidurkiu
