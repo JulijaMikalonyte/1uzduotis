@@ -90,7 +90,7 @@ int main(){
     }
     vid=std::accumulate(tempas.nd.begin(), tempas.nd.end(), 0.0)/tempas.nd.size();//acc-susumuoja nuo pirmo iki paskutinio vektoriaus elemento
 
-    med=mediana(tempas.nd);
+    med=0.4*mediana(tempas.nd)+0.6*tempas.egzaminas;
     tempas.medgalutinis=med;
 
     tempas.galutinis =0.4*vid+0.6*tempas.egzaminas;
@@ -192,4 +192,3 @@ void Nuskaitymas(std::vector<studentas>& Eil, int* pazymiu_sk)
   }
   else { std::cout << "\n nepavyko atidaryti failo \n\n"; }
 };
-
