@@ -11,3 +11,6 @@ Pirmos užduoties antros dalies (v0.2) kodas talpinamas v02kodas.cpp faile, kuri
 Papildytas kodas geba nuskaityti failą, atlikti įprastus skaičiavimus jau aprašyta tvarka ir atsakymą pateikti išrušiuotą.
 
 Skaičiavimams atlikti buvo pasinaudota tekstiniu failu kursiokai.txt, o atlikus visus skaičiavimus rezultatai pateikti naujame tekstiniame faile rezultatai.txt.
+
+# v0.3
+Šioje versijoje buvo atliktas antros užduoties kodo (v02kodas.cpp) reorganizavimas, todėl projekto kodas buvo padalintas i kelis .cpp ir .h failus. Taip pat keliose vietose buvo panaudotas išimčių valdymas (angl. Exception Handling)
