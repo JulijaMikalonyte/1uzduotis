@@ -4,7 +4,7 @@
 #include <fstream>
 #include <vector>
 #include <numeric>
-
+#include <chrono>
 
 struct studentas{
 	std::string Vardas, Pavarde;
@@ -36,6 +36,8 @@ int generavimas(std::vector<int> pazymiai){
 	std::cout << "įveskite kokį kiekį studentų norite sugeneruoti: " << std::endl;
 	std::cin >> kiekis;
 	std::string pavadinimas = "Studentai_" + std::to_string(kiekis) + ".txt";
+	auto start = std::chrono::high_resolution_clock::now();
+	auto st = start;
 	std::ofstream out_data(pavadinimas);
 	std::vector<int> skaiciai;
 	studentas grupe;
@@ -48,6 +50,11 @@ int generavimas(std::vector<int> pazymiai){
 			std::setw(18) << galutinio_skaiciavimas(skaiciai) << std::endl;;
 		skaiciai.clear();
 	}
+
+	auto end = std::chrono::high_resolution_clock::now();
+	std::chrono::duration<double> diff = end - start;
+	std::cout <<std::to_string(kiekis) + " studentų failo sukūrimas užtruko: " << diff.count() << " s\n";
+	return kiekis;
 }
 
 void readFromFile(std::vector<studentas>& grupe, int kiekis){
@@ -58,6 +65,8 @@ void readFromFile(std::vector<studentas>& grupe, int kiekis){
 	fileRead.open(pavadinimas);
 
 	if (fileRead.is_open()) {
+		auto start = std::chrono::high_resolution_clock::now();
+		auto st = start;
 		getline(fileRead >> std::ws, buff);
 
 		while (studento_nr < kiekis){
@@ -67,6 +76,10 @@ void readFromFile(std::vector<studentas>& grupe, int kiekis){
 			fileRead >> grupe.at(studento_nr).galutinis;
 			studento_nr++;
 		}
+
+		auto end = std::chrono::high_resolution_clock::now();
+		std::chrono::duration<double> diff = end - start;
+		std::cout <<" studentų failo nuskaitymas užtruko: " << diff.count() << " s\n";
 	}
 }
 
@@ -81,6 +94,8 @@ int main(){  //atspausdina rezultatus
 	int vargs = 0;
 	int prot = 0;
 
+	auto start = std::chrono::high_resolution_clock::now();
+	auto st = start;
 	for (int i = 0; i < kiek; i++) {
 		float pazymys = 5.00;
 		if (studentai.at(i).galutinis < pazymys) {
@@ -97,9 +112,15 @@ int main(){  //atspausdina rezultatus
 		}
 	}
 
+	auto end = std::chrono::high_resolution_clock::now();
+	std::chrono::duration<double> diff = end - start;
+	std::cout << std::to_string(kiek)+ " studentų išrūšiavimas į dvi grupes užtruko : " << diff.count() << " s\n";
+
 	std::string pavadinimas;
 	pavadinimas = "vargsiukai_" + std::to_string(kiek) + ".txt";
 	std::ofstream vargs_failas(pavadinimas);
+	auto start1 = std::chrono::high_resolution_clock::now();
+	auto st1 = start1;
 	for (int i = 0; i < kiek; i++) {
 		float pazymys = 5.00;
 		if (studentai.at(i).galutinis < pazymys) {
@@ -107,9 +128,14 @@ int main(){  //atspausdina rezultatus
 		}
 	}
 
+	auto end1 = std::chrono::high_resolution_clock::now();
+	std::chrono::duration<double> diff1 = end1 - start1;
+	std::cout <<std::to_string(kiek) + " studentų failo išvedimas į vargšiukų failą užtruko : " << diff1.count() << " s\n";
+
 	pavadinimas = "protingi_" + std::to_string(kiek) + ".txt";
 	std::ofstream prot_failas(pavadinimas);
-
+	auto start2= std::chrono::high_resolution_clock::now();
+	auto st2 = start2;
 	for (int j = 0; j < kiek; j++) {
 		float paz = 5.00;
 		if (studentai.at(j).galutinis >= paz) {
@@ -117,4 +143,7 @@ int main(){  //atspausdina rezultatus
 		}
 	}
   
+	auto end2 = std::chrono::high_resolution_clock::now();
+	std::chrono::duration<double> diff2 = end2 - start2;
+	std::cout <<std::to_string(kiek) + " studentų failo išvedimas į protingų failą užtruko : " << diff2.count() << " s\n";
 }
