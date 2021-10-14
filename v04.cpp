@@ -39,6 +39,15 @@ int generavimas(std::vector<int> pazymiai){
 	std::ofstream out_data(pavadinimas);
 	std::vector<int> skaiciai;
 	studentas grupe;
+	out_data << std::setw(20) << std::left << "Vardas"<< std::setw(20) << std::left << "Pavarde"<< std::setw(20) << std::left << "Galutinis(vid.)\n";
+
+	for (int s = 1; s <= kiekis; s = s + 1){
+		skaiciai = nd_generavimas(5);
+		out_data << std::setw(20) << "Vardas" + std::to_string(s) <<
+			std::setw(20) << "Pavarde" + std::to_string(s) <<
+			std::setw(18) << galutinio_skaiciavimas(skaiciai) << std::endl;;
+		skaiciai.clear();
+	}
 }
 
 void readFromFile(std::vector<studentas>& grupe, int kiekis){
@@ -91,10 +100,21 @@ int main(){  //atspausdina rezultatus
 	std::string pavadinimas;
 	pavadinimas = "vargsiukai_" + std::to_string(kiek) + ".txt";
 	std::ofstream vargs_failas(pavadinimas);
+	for (int i = 0; i < kiek; i++) {
+		float pazymys = 5.00;
+		if (studentai.at(i).galutinis < pazymys) {
+			vargs_failas << studentai.at(i).Vardas << std::setw(20) << studentai.at(i).Pavarde << std::setw(18) << studentai.at(i).galutinis << std::endl;
+		}
+	}
 
 	pavadinimas = "protingi_" + std::to_string(kiek) + ".txt";
 	std::ofstream prot_failas(pavadinimas);
 
-
+	for (int j = 0; j < kiek; j++) {
+		float paz = 5.00;
+		if (studentai.at(j).galutinis >= paz) {
+			prot_failas << studentai.at(j).Vardas << std::setw(20) << studentai.at(j).Pavarde << std::setw(18) << studentai.at(j).galutinis << std::endl;
+		}
+	}
   
 }
