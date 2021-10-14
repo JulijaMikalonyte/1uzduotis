@@ -35,16 +35,38 @@ int generavimas(std::vector<int> pazymiai){
 	int kiekis;
 	std::cout << "įveskite kokį kiekį studentų norite sugeneruoti: " << std::endl;
 	std::cin >> kiekis;
+	std::string pavadinimas = "Studentai_" + std::to_string(kiekis) + ".txt";
+	std::ofstream out_data(pavadinimas);
 	std::vector<int> skaiciai;
 	studentas grupe;
 }
 
+void readFromFile(std::vector<studentas>& grupe, int kiekis){
+	int studento_nr = 0;
+	std::ifstream fileRead;
+	std::string pavadinimas = "Studentai_" + std::to_string(kiekis) + ".txt";
+	std::string buff;
+	fileRead.open(pavadinimas);
+
+	if (fileRead.is_open()) {
+		getline(fileRead >> std::ws, buff);
+
+		while (studento_nr < kiekis){
+			grupe.resize(grupe.size() + 1);
+			fileRead >> grupe.at(studento_nr).Vardas;
+			fileRead >> grupe.at(studento_nr).Pavarde;
+			fileRead >> grupe.at(studento_nr).galutinis;
+			studento_nr++;
+		}
+	}
+}
 
 int main(){  //atspausdina rezultatus
 	std::vector<int> skaiciai;
 
 	int kiek = generavimas(skaiciai);
 	std::vector<studentas> studentai;
+	readFromFile(studentai, kiek);
 	std::vector<studentas> protingi;
 	std::vector<studentas> vargsiukai;
 	int vargs = 0;
@@ -66,4 +88,13 @@ int main(){  //atspausdina rezultatus
 		}
 	}
 
+	std::string pavadinimas;
+	pavadinimas = "vargsiukai_" + std::to_string(kiek) + ".txt";
+	std::ofstream vargs_failas(pavadinimas);
+
+	pavadinimas = "protingi_" + std::to_string(kiek) + ".txt";
+	std::ofstream prot_failas(pavadinimas);
+
+
+  
 }
