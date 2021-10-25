@@ -22,6 +22,9 @@ Taip pat atlikta programos spartos analizė parodo, kiek laiko užtruko sukurti 
 # v0.5
 
 Testavimo sistemos parametrai:
+CPU:
+RAM:
+HDD:
 
 Duomenų nuskaitymas iš failų:
 
