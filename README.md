@@ -22,11 +22,7 @@ Taip pat atlikta programos spartos analizė parodo, kiek laiko užtruko sukurti 
 # v0.5
 
 Testavimo sistemos parametrai:
-CPU: Intel(R) Core(TM) i5-1035G1 CPU @ 1.00GHz
-
-RAM:8.00 GB
-
-SSD:447GB
+CPU: Intel(R) Core(TM) i5-1035G1 CPU @ 1.00GHz, RAM:8.00, GB SSD:447GB
 
 Duomenų nuskaitymas iš failų:
 
