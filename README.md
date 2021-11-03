@@ -34,7 +34,7 @@ Studentų rūšiavimas į dvi grupes:
 
 |1 000|10 000|100 000|1 000 000|
 |-----|------|--------|--------|
-|5.34112 s|660.619 s||neuzteko atminties|neuzteko atminties|
+|5.34112 s|660.619 s|neuzteko atminties|neuzteko atminties|
 
 # v1.0
 
