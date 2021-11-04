@@ -3,7 +3,8 @@
 #include <iomanip>
 #include <fstream>
 #include <vector>
-
+#include <numeric>
+#include <chrono>
 #include <list>
 
 struct studentas {
@@ -33,7 +34,11 @@ std::vector<int> auto_pazymiai(int how_many_marks){
 	return skaiciai;
 }
 
-
+float galutinis(std::vector<int> skaiciai) {
+	studentas Eil;
+	Eil.GP = 0.4 * std::accumulate(skaiciai.begin(), skaiciai.end(), 0) / skaiciai.size() + 0.6 * generate_random();
+	return Eil.GP;
+}
 
 int generavimas(std::vector<int> pazymiai){
 	int kiek;
@@ -43,7 +48,11 @@ int generavimas(std::vector<int> pazymiai){
 	std::ofstream out_data(pavadinimas);
 	std::vector<int> skaiciai;
 	studentas Eil;
-	
+	out_data << std::setw(20) << std::left << "Vardas"<< std::setw(20) <<std::left << "Pavarde"<< std::setw(20) << std::left << "Galutinis(vid.)" << std::endl;
+	for (int s = 1; s <= kiek; s = s + 1)	{
+		skaiciai = auto_pazymiai(5);
+		out_data << std::setw(20) << "Vardas" + std::to_string(s) <<std::setw(20) << "Pavarde" + std::to_string(s) <<std::setw(18) << galutinis(skaiciai) << std::endl;;
+		skaiciai.clear();
 	}
 	return kiek;
 }
@@ -85,7 +94,22 @@ int main(){  //atspausdina rezultatus
 
 	auto start = std::chrono::high_resolution_clock::now();
 	auto st = start;
-	f
+	for (int i = 0; i < kiek; i++){
+		float paz = 5.00;
+		if (get(studentai, i).GP < paz){
+			vargsiukai.push_back(get(studentai, i));
+			vargs++;
+		}
+	}
+
+	for (int j = 0; j < kiek; j++) {
+		float paz = 5.00;
+		int _gp = get(studentai, j).GP;
+		if (get(studentai, j).GP >= paz){
+			protingi.push_back(get(studentai, j));
+			prot++;
+		}
+	}
 
 	auto end = std::chrono::high_resolution_clock::now();
 	std::chrono::duration<double> diff = end - start;
