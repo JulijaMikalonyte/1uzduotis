@@ -35,7 +35,18 @@ std::vector<int> auto_pazymiai(int how_many_marks){
 
 
 
-
+int generavimas(std::vector<int> pazymiai){
+	int kiek;
+	std::cout << "iveskite studentu skaiciu: " << std::endl;
+	std::cin >> kiek;
+	std::string pavadinimas = "Studentai_" + std::to_string(kiek) + ".txt";
+	std::ofstream out_data(pavadinimas);
+	std::vector<int> skaiciai;
+	studentas Eil;
+	
+	}
+	return kiek;
+}
 
 void readFromFile(std::list<studentas>& Eil, int kiek){
 	int student_counter = 0;
@@ -43,7 +54,22 @@ void readFromFile(std::list<studentas>& Eil, int kiek){
 	std::string pavadinimas = "Studentai_" + std::to_string(kiek) + ".txt";
 	std::string buff;
 	fileRead.open(pavadinimas);
-	
+	if (fileRead.is_open()) {
+		auto start = std::chrono::high_resolution_clock::now();
+		auto st = start;
+		getline(fileRead >> std::ws, buff);
+		while (student_counter < kiek){
+			studentas duom;
+			fileRead >> duom.Vardas;
+			fileRead >> duom.Pavarde;
+			fileRead >> duom.GP;
+			Eil.push_back(duom);
+			student_counter++;
+		}
+		auto end = std::chrono::high_resolution_clock::now();
+		std::chrono::duration<double> diff = end - start;
+		std::cout << "Failo su " + std::to_string(kiek) + " studentu/-ais nuskaitymas uztruko: " << diff.count() << " s\n";
+	}
 }
 
 int main(){  //atspausdina rezultatus
@@ -56,5 +82,14 @@ int main(){  //atspausdina rezultatus
 	std::list<studentas> vargsiukai;
 	int vargs = 0;
 	int prot = 0;
+
+	auto start = std::chrono::high_resolution_clock::now();
+	auto st = start;
+	f
+
+	auto end = std::chrono::high_resolution_clock::now();
+	std::chrono::duration<double> diff = end - start;
+	std::cout << "Failo rusiavimas su " + std::to_string(kiek) + " studentais i dvi grupes uztruko : " << diff.count() << " s\n";
+	std::string pav;
 
 }
