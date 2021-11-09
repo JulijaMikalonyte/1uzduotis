@@ -24,20 +24,14 @@ Taip pat atlikta programos spartos analizė parodo, kiek laiko užtruko sukurti 
 Testavimo sistemos parametrai:
 CPU: Intel(R) Core(TM) i5-1035G1 CPU @ 1.00GHz, RAM:8.00, GB SSD:447GB
 
-Kodą galite rasti [čia](https://github.com/JulijaMikalonyte/1uzduotis/blob/main/v0.5.cpp).
-
 Duomenų nuskaitymas iš failų:
 
 |1 000|10 000|100 000|1 000 000|
 |-----|------|-------|---------|
-|0.00225684 s|00.037698 s|0.520292 s|6.22395 s|
+|||||
 
 Studentų rūšiavimas į dvi grupes:
 
 |1 000|10 000|100 000|1 000 000|
 |-----|------|--------|--------|
-|5.34112 s|660.619 s| - | - |
-
-# v1.0
-
-
+|||||
