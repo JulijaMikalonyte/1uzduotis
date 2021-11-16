@@ -1,0 +1,24 @@
+﻿  bibliotekos.cpp
+  The contents of <string_view> are available only with C++17 or later.
+  duomenys.cpp
+  The contents of <string_view> are available only with C++17 or later.
+  generate_random.cpp
+  The contents of <string_view> are available only with C++17 or later.
+  generavimas.cpp
+  The contents of <string_view> are available only with C++17 or later.
+C:\Users\Pupsikas\source\repos\vpenki\generavimas.cpp(7,89): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Pupsikas\source\repos\vpenki\generavimas.cpp(17,26): warning C4244: '=': conversion from '_Ty' to 'float', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+C:\Users\Pupsikas\source\repos\vpenki\generavimas.cpp(19,54): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Pupsikas\source\repos\vpenki\generavimas.cpp(20,22): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Pupsikas\source\repos\vpenki\generavimas.cpp(35): fatal error C1075: '{': no matching token found
+  Nuskaitymas.cpp
+  The contents of <string_view> are available only with C++17 or later.
+  Rusiavimas.cpp
+  The contents of <string_view> are available only with C++17 or later.
+  vpenki.cpp
+  The contents of <string_view> are available only with C++17 or later.
+  Generating Code...
